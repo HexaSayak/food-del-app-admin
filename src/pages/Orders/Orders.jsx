@@ -28,9 +28,9 @@ const Orders = ({ url }) => {
       return;
     }
     try {
-      const response = await axios.get(url + "api/order/list");
+      //const response = await axios.get(url + "api/order/list");
       // const response = await axios.get("http://localhost:4000/api/order/list"); 
-      // const response = await axios.get("http://food-del-app-backend-x861.onrender.com/api/order/list"); 
+      const response = await axios.get("http://food-del-app-backend-x861.onrender.com/api/order/list"); 
       
       if (response.data.success) {
           setOrders(response.data.data);
@@ -59,9 +59,9 @@ const Orders = ({ url }) => {
       toast.error("URL is not defined");
       return;
     }
-    const response = await axios.post(url+"api/order/status",{
+    //const response = await axios.post(url+"api/order/status",{
     // const response = await axios.post("http://localhost:4000/api/order/status",{
-    // const response = await axios.post("http://food-del-app-backend-x861.onrender.com/api/order/status",{
+    const response = await axios.post("http://food-del-app-backend-x861.onrender.com/api/order/status",{
       orderId,
       status:event.target.value
     })
