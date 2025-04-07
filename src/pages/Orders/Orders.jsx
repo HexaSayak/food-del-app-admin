@@ -11,40 +11,40 @@ const Orders = ({ url }) => {
   
   const [orders,setOrders] = useState([]);
 
-  const fetchAllOrders = async () => {
-
-    const response = await axios.get(url+"api/order/list");
-    if (response.data.success) {
-        setOrders(response.data.data);
-        console.log(response.data.data);
-    }
-    else{
-        toast.error("Error");
-    }
-  }
   // const fetchAllOrders = async () => {
-  //   if (!url || typeof url !== 'string' || url.trim() === '') {
-  //     toast.error("Invalid URL provided.");
-  //     return;
+
+  //   const response = await axios.get(url+"api/order/list");
+  //   if (response.data.success) {
+  //       setOrders(response.data.data);
+  //       console.log(response.data.data);
   //   }
-  //   try {
-  //     //const response = await axios.get(url + "api/order/list");
-  //     // const response = await axios.get("http://localhost:4000/api/order/list"); 
-  //     //const response = await axios.get("http://food-del-app-backend-x861.onrender.com/api/order/list"); 
-  //     const response = await axios.get(`${url}/api/order/list`);
+  //   else{
+  //       toast.error("Error");
+  //   }
+  // }
+  const fetchAllOrders = async () => {
+    if (!url || typeof url !== 'string' || url.trim() === '') {
+      toast.error("Invalid URL provided.");
+      return;
+    }
+    try {
+      const response = await axios.get(url+"/api/order/list");
+      // const response = await axios.get("http://localhost:4000/api/order/list"); 
+      //const response = await axios.get("http://food-del-app-backend-x861.onrender.com/api/order/list"); 
+      //const response = await axios.get(`${url}/api/order/list`);
       
-  //     if (response.data.success) {
-  //         setOrders(response.data.data);
-  //         console.log(response.data.data);
-  //     }
-  //     else{
-  //         toast.error("Error");
-  //     }
+      if (response.data.success) {
+          setOrders(response.data.data);
+          console.log(response.data.data);
+      }
+      else{
+          toast.error("Error");
+      }
      
-  //   } catch (error) {
-  //     toast.error("Server error!");
-  //     console.error(error);
-  //   }
+    } catch (error) {
+      toast.error("Server error!");
+      console.error(error);
+    }
 
   
     // const response = await axios.get(url+"api/order/list");
