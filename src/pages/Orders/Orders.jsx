@@ -5,67 +5,63 @@ import { assets } from '../../assets/assets'
 import { toast } from 'react-toastify'
 
 const Orders = ({ url }) => {
-//const Orders = () => {
+// const Orders = () => {
   // const url = "http://localhost:4000"
-  //const url = "https://food-del-app-backend-x861.onrender.com"
+  // const url = "https://food-del-app-backend-x861.onrender.com"
   
   const [orders,setOrders] = useState([]);
 
-  // const fetchAllOrders = async () => {
-
-  //   const response = await axios.get(url+"api/order/list");
-  //   if (response.data.success) {
-  //       setOrders(response.data.data);
-  //       console.log(response.data.data);
-  //   }
-  //   else{
-  //       toast.error("Error");
-  //   }
-  // }
   const fetchAllOrders = async () => {
-    if (!url || typeof url !== 'string' || url.trim() === '') {
-      toast.error("Invalid URL provided.");
-      return;
-    }
-    try {
-      const response = await axios.get(url+"/api/order/list");
-      // const response = await axios.get("http://localhost:4000/api/order/list"); 
-      //const response = await axios.get("http://food-del-app-backend-x861.onrender.com/api/order/list"); 
-      //const response = await axios.get(`${url}/api/order/list`);
-      
-      if (response.data.success) {
-          setOrders(response.data.data);
-          console.log(response.data.data);
-      }
-      else{
-          toast.error("Error");
-      }
-     
-    } catch (error) {
-      toast.error("Server error!");
-      console.error(error);
-    }
 
-  
-    // const response = await axios.get(url+"api/order/list");
-    // if (response.data.success) {
-    //     setOrders(response.data.data);
-    //     console.log(response.data.data);
-    // }
-    // else{
-    //     toast.error("Error");
-    // }
+    const response = await axios.get(url+"/api/order/list");
+    if (response.data.success) {
+        setOrders(response.data.data);
+        console.log(response.data.data);
+    }
+    else{
+        toast.error("Error");
+    }
   }
+  // const fetchAllOrders = async () => {
+  //   if (!url || typeof url !== 'string' || url.trim() === '') {
+  //     toast.error("Invalid URL provided.");
+  //     return;
+  //   }
+  //   try {
+  //     const response = await axios.get(url + "api/order/list");
+  //     // const response = await axios.get("http://localhost:4000/api/order/list"); 
+  //     // const response = await axios.get("http://food-del-app-backend-x861.onrender.com/api/order/list"); 
+      
+  //     if (response.data.success) {
+  //         setOrders(response.data.data);
+  //         console.log(response.data.data);
+  //     }
+  //     else{
+  //         toast.error("Error");
+  //     }
+     
+  //   } catch (error) {
+  //     toast.error("Server error!");
+  //     console.error(error);
+  //   }
+  //   // const response = await axios.get(url+"api/order/list");
+  //   // if (response.data.success) {
+  //   //     setOrders(response.data.data);
+  //   //     console.log(response.data.data);
+  //   // }
+  //   // else{
+  //   //     toast.error("Error");
+  //   // }
+  // }
 
   const statusHandler = async (event,orderId) => {
     if(!url){
       toast.error("URL is not defined");
       return;
     }
-    //const response = await axios.post(url+"api/order/status",{
+    const response = await axios.post(url+"/api/order/status",{
     // const response = await axios.post("http://localhost:4000/api/order/status",{
-    //const response = await axios.post("http://food-del-app-backend-x861.onrender.com/api/order/status",{
-    const response = await axios.post(`${url}/api/order/status`,{
+    // const response = await axios.post("http://food-del-app-backend-x861.onrender.com/api/order/status",{
       orderId,
       status:event.target.value
     })
@@ -77,7 +73,7 @@ const Orders = ({ url }) => {
 
   useEffect(()=>{
     fetchAllOrders();
-  })
+  },[])
   // useEffect(()=>{
   //   fetchAllOrders();
   // },[])
