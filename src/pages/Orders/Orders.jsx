@@ -75,7 +75,7 @@ const Orders = () => {
 
   useEffect(()=>{
     fetchAllOrders();
-  },[])
+  })
   // useEffect(()=>{
   //   fetchAllOrders();
   // },[])
